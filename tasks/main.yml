@@ -1,0 +1,6 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- include: synergy.yml
+  when: synergy_enabled 
+  tags: [synergy]

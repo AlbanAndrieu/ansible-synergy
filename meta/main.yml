@@ -1,0 +1,48 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Alban Andrieu
+  description: A role for installing synergy
+  company: Nabla
+  license: GPLv3
+  min_ansible_version: 1.6.3
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+    - lucid
+    - maverick
+    - natty
+    - oneiric
+    - precise
+    - quantal
+    - raring
+    - saucy
+    - trusty
+  categories:
+  - development
+  - security
+
+ansigenome_info:
+  galaxy_id: '1614'
+  galaxy_user: 'alban.andrieu'
+  
+  travis: True
+
+  authors:
+    - name:  'Alban Andrieu'
+      url: 'fr.linkedin.com/in/nabla/'
+      email: 'alban.andrieu@free.fr'
+      twitter: 'AlbanAndrieu'
+      github: 'AlbanAndrieu'
+      
+  synopsis: |
+    This ``Simple`` role allows you to install [synergy](http://fr.wikipedia.org/wiki/Synergy_(logiciel)) service
+    which can be share your keyboard and mouse across computer.   
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..

@@ -1,0 +1,80 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: shell | Check user
+  user: name={{ synergy_owner }} state={{ synergy_user_state }}
+
+- name: shell | Check user home directory
+  stat: path={{ synergy_owner_home }}
+  register: home_present
+
+- debug: msg=" shell | Path exists and is a directory"
+  when: home_present.stat.isdir is defined and home_present.stat.isdir == true
+  
+- name: synergy | Create temporary directory
+  shell: mktemp -d
+  register: tempdir
+  sudo: true
+  tags: synergy_setup
+
+- name: synergy | Download synergy
+  get_url:
+    url="{{synergy_url}}"
+    dest="{{ synergy_dir_tmp }}/{{synergy_archive}}"
+  register: synergy_download
+  tags: synergy_setup
+
+- name: synergy | Create base directory
+  file:
+    dest="{{synergy_base_dir}}/{{synergy_name}}"
+    state=directory
+    owner="{{synergy_owner}}"
+    group="{{synergy_group}}"
+  when: synergy_download.changed
+  tags: synergy_setup
+
+- name: synergy | Add package
+  apt: deb={{ synergy_dir_tmp }}/{{ synergy_package_deb }}
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  when: synergy_download.changed  
+  tags: synergy_setup
+
+#- name: synergy | Change archive synergy ownership
+#  file: path={{synergy_base_dir}}/{{synergy_name}} owner={{synergy_owner}} group={{synergy_group}} state=directory recurse=yes
+#  when: synergy_download.changed
+#  tags: synergy_setup
+#
+#- name: synergy | Stat {{synergy_base_dir}}/{{synergy_name}}
+#  stat: path={{synergy_base_dir}}/{{synergy_name}}
+#  register: synergy_archive_extracted_present
+#  tags: synergy_setup
+#
+#- debug: msg=" synergy | Path exists and is a directory"
+#  when: synergy_archive_extracted_present.stat.isdir is defined and synergy_archive_extracted_present.stat.isdir == true
+#  tags: synergy_setup
+#
+#- fail: msg=" synergy | Whoops! file ownership has changed"
+#  when: synergy_archive_extracted_present.stat.pw_name != '{{synergy_owner}}'
+#  tags: synergy_setup
+#
+#- name: synergy | Create a link to synergy (1)
+#  file:
+#    src="{{synergy_base_dir}}/{{synergy_name}}"
+#    dest="{{synergy_base_dir}}/synergy-{{synergy_major}}"
+#    state=link
+#    owner="{{synergy_owner}}"
+#    group="{{synergy_group}}"
+#  tags: synergy_setup
+#
+#- name: synergy | Create a link to synergy (2)
+#  file:
+#    src="{{synergy_base_dir}}/{{synergy_name}}"
+#    dest="{{synergy_link_base_dir}}/synergy-{{synergy_major}}"
+#    state=link
+#    owner="{{synergy_owner}}"
+#    group="{{synergy_group}}"
+#  tags: synergy_setup
+  
+- name: synergy | Cleanup temporary directory
+  file: name={{ tempdir.stdout }} state=absent
+  tags: synergy_setup
