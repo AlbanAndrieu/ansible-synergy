@@ -1,15 +1,17 @@
-## zap
+## synergy
 
-[![Travis CI](http://img.shields.io/travis/AlbanAndrieu/ansible-zap.svg?style=flat)](http://travis-ci.org/AlbanAndrieu/ansible-zap) [![Branch](http://img.shields.io/github/tag/AlbanAndrieu/ansible-zap.svg?style=flat-square)](https://github.com/AlbanAndrieu/ansible-zap/tree/master) [![Donate](https://img.shields.io/gratipay/AlbanAndrieu.svg?style=flat)](https://www.gratipay.com/AlbanAndrieu)  [![Ansible Galaxy](http://img.shields.io/badge/galaxy-alban.andrieu.zap-blue.svg?style=flat)](https://galaxy.ansible.com/list#/roles/1614) [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
+[![Travis CI](http://img.shields.io/travis/AlbanAndrieu/ansible-synergy.svg?style=flat)](http://travis-ci.org/AlbanAndrieu/ansible-synergy) [![Branch](http://img.shields.io/github/tag/AlbanAndrieu/ansible-synergy.svg?style=flat-square)](https://github.com/AlbanAndrieu/ansible-synergy/tree/master) [![Donate](https://img.shields.io/gratipay/AlbanAndrieu.svg?style=flat)](https://www.gratipay.com/AlbanAndrieu)  [![Ansible Galaxy](http://img.shields.io/badge/galaxy-alban.andrieu.synergy-blue.svg?style=flat)](https://galaxy.ansible.com/list#/roles/2206) [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
 
-This ``Simple`` role allows you to install [Zap](https://code.google.com/p/zaproxy/) zaproxy service
-which can be used to perform penetration testing.
+This ``Simple`` role allows you to install [synergy](http://fr.wikipedia.org/wiki/Synergy_(logiciel)) service
+which can be share your keyboard and mouse across computer.
 
 ### Installation
 
-This role requires at least Ansible `v1.6.3`. To install it, run:
+This role requires at least Ansible `v1.6.3`. 
 
-    ansible-galaxy install alban.andrieu.zap
+To install it, run:
+
+    ansible-galaxy install alban.andrieu.synergy
 
 
 
@@ -19,43 +21,34 @@ List of default variables available in the inventory:
 
 ```yaml
     ---
-    zap_enabled: yes                       # Enable module
+    synergy_enabled: yes                       # Enable module
     
-    #zap_listen_ip: "127.0.0.1"
-    #zap_port: "8090"
+    #synergy_listen_ip: "127.0.0.1"
+    #synergy_port: "8090"
     
-    ## Where to install zap and Unix user/group
-    #user: "{{ lookup('env','USER') }}"
-    zap_owner: "zap" 
-    #zap_owner: "{{ user }}" 
-    zap_group: "{{ zap_owner }}"
-    zap_shell: "/bin/false" #/bin/bash
-    zap_base_dir: "/usr/local/zap"
-    #home: "{{ lookup('env','HOME') }}"
-    #zap_owner_home: "{{ home }}"
-    zap_owner_home: "{{ zap_base_dir }}"
-    zap_link_base_dir: "/opt"
-    zap_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
-    zap_user_state: present
-    #zap_pkg_state: present
+    #user: 'albandri' #please override me
+    user: "{{ lookup('env','USER') }}"
+    synergy_owner: "{{ user }}" 
+    synergy_group: "{{ synergy_owner }}"
+    #home: '~' #please override me
+    home: "{{ lookup('env','HOME') }}"
+    synergy_owner_home: "{{ home }}"
+    #synergy_home: "{{ synergy_owner_home }}.synergy"
+    synergy_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+    synergy_user_state: present
+    #synergy_pkg_state: present
     
     ## Most likely you dont need to edit 
-    #todo zap_service_enabled   : 'yes'
-    zap_major: "2"
-    zap_minor: "3.1"
-    zap_version: "{{zap_major}}.{{zap_minor}}"
-    zap_name: "zap-{{zap_version}}"
-    zap_archive_extracted: "ZAP_{{zap_version}}"
-    zap_archive: "{{zap_archive_extracted}}_Linux.tar.gz"
-    zap_url: "http://sourceforge.net/projects/zaproxy/files/{{zap_version}}/{{zap_archive}}/download"
-    #zap_url: "http://downloads.sourceforge.net/project/zaproxy/{{zap_version}}/{{zap_archive}}?r=&ts=1411599584&use_mirror=skylink"
-    zap_home_dir: "{{zap_base_dir}}/{{zap_name}}"
-    
-    docker_files_generated_directory: "./"
-    docker_files_enable: no
-    docker_volume_directory: "{{ zap_base_dir }}"
-    docker_working_directory: "/home/vagrant"
-    docker_image_name: "nabla/ansible-zap"
+    #todo synergy_service_enabled   : 'yes'
+    synergy_major: "1"
+    synergy_minor: "4.17-r2055"
+    synergy_architecture: "-Linux-x86_64"
+    synergy_version: "{{synergy_major}}.{{synergy_minor}}{{synergy_architecture}}"
+    #synergy_name: "synergy-{{synergy_version}}"
+    #synergy_archive_extracted: "synergy_{{synergy_version}}"
+    #synergy_archive: "{{synergy_archive_extracted}}_Linux.tar.gz"
+    synergy_url: "http://fossfiles.com/synergy/synergy-{{synergy_version}}.deb"
+    #synergy_home_dir: "{{synergy_base_dir}}/{{synergy_name}}"
 ```
 
 
@@ -66,13 +59,13 @@ Describe how to use in more detail...
 
 ### Authors and license
 
-`zap` role was written by:
+`synergy` role was written by:
 - [Alban Andrieu](fr.linkedin.com/in/nabla/) | [e-mail](mailto:alban.andrieu@free.fr) | [Twitter](https://twitter.com/AlbanAndrieu) | [GitHub](https://github.com/AlbanAndrieu)
 - License: [GPLv3](https://tldrlegal.com/license/gnu-general-public-license-v3-%28gpl-3%29)
 
 ### Feedback, bug-reports, requests, ...
 
-Are [welcome](https://github.com/AlbanAndrieu/ansible-zap/issues)!
+Are [welcome](https://github.com/AlbanAndrieu/ansible-synergy/issues)!
 
 ***
 

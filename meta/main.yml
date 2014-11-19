@@ -25,7 +25,7 @@ galaxy_info:
   - security
 
 ansigenome_info:
-  galaxy_id: '1614'
+  galaxy_id: '2206'
   galaxy_user: 'alban.andrieu'
   
   travis: True
