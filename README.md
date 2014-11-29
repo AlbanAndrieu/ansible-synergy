@@ -1,4 +1,4 @@
-## synergy
+## alban.andrieu.synergy
 
 [![Travis CI](http://img.shields.io/travis/AlbanAndrieu/ansible-synergy.svg?style=flat)](http://travis-ci.org/AlbanAndrieu/ansible-synergy) [![Branch](http://img.shields.io/github/tag/AlbanAndrieu/ansible-synergy.svg?style=flat-square)](https://github.com/AlbanAndrieu/ansible-synergy/tree/master) [![Donate](https://img.shields.io/gratipay/AlbanAndrieu.svg?style=flat)](https://www.gratipay.com/AlbanAndrieu)  [![Ansible Galaxy](http://img.shields.io/badge/galaxy-alban.andrieu.synergy-blue.svg?style=flat)](https://galaxy.ansible.com/list#/roles/2206) [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
 
@@ -20,8 +20,7 @@ To install it, run:
 List of default variables available in the inventory:
 
 ```yaml
-    ---
-    synergy_enabled: yes                       # Enable module
+        synergy_enabled: yes                       # Enable module
     
     #synergy_listen_ip: "127.0.0.1"
     #synergy_port: "8090"
@@ -45,8 +44,8 @@ List of default variables available in the inventory:
     synergy_architecture: "-Linux-x86_64"
     synergy_version: "{{synergy_major}}.{{synergy_minor}}{{synergy_architecture}}"
     #synergy_name: "synergy-{{synergy_version}}"
-    #synergy_archive_extracted: "synergy_{{synergy_version}}"
-    #synergy_archive: "{{synergy_archive_extracted}}_Linux.tar.gz"
+    synergy_archive_extracted: "synergy_{{synergy_version}}"
+    synergy_archive: "{{synergy_archive_extracted}}_Linux.tar.gz"
     synergy_url: "http://fossfiles.com/synergy/synergy-{{synergy_version}}.deb"
     #synergy_home_dir: "{{synergy_base_dir}}/{{synergy_name}}"
 ```
@@ -59,7 +58,7 @@ Describe how to use in more detail...
 
 ### Authors and license
 
-`synergy` role was written by:
+`alban.andrieu.synergy` role was written by:
 - [Alban Andrieu](fr.linkedin.com/in/nabla/) | [e-mail](mailto:alban.andrieu@free.fr) | [Twitter](https://twitter.com/AlbanAndrieu) | [GitHub](https://github.com/AlbanAndrieu)
 - License: [GPLv3](https://tldrlegal.com/license/gnu-general-public-license-v3-%28gpl-3%29)
 

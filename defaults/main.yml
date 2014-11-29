@@ -1,4 +1,3 @@
----
 synergy_enabled: yes                       # Enable module
 
 #synergy_listen_ip: "127.0.0.1"
@@ -23,7 +22,7 @@ synergy_minor: "4.17-r2055"
 synergy_architecture: "-Linux-x86_64"
 synergy_version: "{{synergy_major}}.{{synergy_minor}}{{synergy_architecture}}"
 #synergy_name: "synergy-{{synergy_version}}"
-#synergy_archive_extracted: "synergy_{{synergy_version}}"
-#synergy_archive: "{{synergy_archive_extracted}}_Linux.tar.gz"
+synergy_archive_extracted: "synergy_{{synergy_version}}"
+synergy_archive: "{{synergy_archive_extracted}}_Linux.tar.gz"
 synergy_url: "http://fossfiles.com/synergy/synergy-{{synergy_version}}.deb"
 #synergy_home_dir: "{{synergy_base_dir}}/{{synergy_name}}"
