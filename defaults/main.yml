@@ -30,3 +30,8 @@ synergy_archive_extracted: "{{synergy_package_deb}}"
 synergy_archive: "{{synergy_archive_extracted}}"
 synergy_url: "https://symless.com/files/nightly/{{synergy_package_deb}}"
 #synergy_home_dir: "{{synergy_base_dir}}/{{synergy_name}}"
+
+# Place to get apt repository key
+apt_key_url: https://symless.com/gpg
+# apt repository key signature
+apt_key_sig: TODO

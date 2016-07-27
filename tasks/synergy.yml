@@ -10,7 +10,7 @@
 
 - debug: msg=" shell | Path exists and is a directory"
   when: home_present.stat.isdir is defined and home_present.stat.isdir == true
-  
+
 - name: synergy | Create temporary directory
   shell: mktemp -d
   register: tempdir
@@ -33,10 +33,22 @@
   when: synergy_download.changed
   tags: synergy_setup
 
+- name: Add synergy repository key
+  apt_key:
+    id: "{{ apt_key_sig }}"
+    url: "{{ apt_key_url }}"
+    state: present
+  register: add_repository_key
+  ignore_errors: true
+
+#- name: Alternative | Add synergy repository key
+#  shell: curl -sSL https://symless.com/gpg | sudo apt-key add -
+#  when: add_repository_key|failed
+
 - name: synergy | Add package
   apt: deb={{ synergy_dir_tmp }}/{{ synergy_package_deb }}
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  when: synergy_download.changed  
+  when: synergy_download.changed
   tags: synergy_setup
 
 #- name: synergy | Change archive synergy ownership
@@ -74,7 +86,7 @@
 #    owner="{{synergy_owner}}"
 #    group="{{synergy_group}}"
 #  tags: synergy_setup
-  
+
 - name: synergy | Cleanup temporary directory
   file: name={{ tempdir.stdout }} state=absent
   tags: synergy_setup
