@@ -5,7 +5,7 @@ synergy_enabled: yes                       # Enable module
 
 #user: 'albandri' #please override me
 user: "{{ lookup('env','USER') }}"
-synergy_owner: "{{ user }}" 
+synergy_owner: "{{ user }}"
 synergy_group: "{{ synergy_owner }}"
 #home: '~' #please override me
 home: "{{ lookup('env','HOME') }}"
@@ -15,14 +15,15 @@ synergy_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to hav
 synergy_user_state: present
 #synergy_pkg_state: present
 
-## Most likely you dont need to edit 
+## Most likely you dont need to edit
 #todo synergy_service_enabled   : 'yes'
 synergy_major: "1"
-synergy_minor: "4.17-r2055"
-synergy_architecture: "-Linux-x86_64"
-synergy_version: "{{synergy_major}}.{{synergy_minor}}{{synergy_architecture}}"
+synergy_minor: "8.2"
+synergy_number: "rc1-f4510c7"
+synergy_architecture: "Linux-x86_64"
+synergy_version: "{{synergy_major}}.{{synergy_minor}}-{{synergy_number}}-{{synergy_architecture}}"
 #synergy_name: "synergy-{{synergy_version}}"
 synergy_archive_extracted: "synergy_{{synergy_version}}"
 synergy_archive: "{{synergy_archive_extracted}}_Linux.tar.gz"
-synergy_url: "http://fossfiles.com/synergy/synergy-{{synergy_version}}.deb"
+synergy_url: "https://symless.com/files/nightly/synergy-{{synergy_version}}.deb"
 #synergy_home_dir: "{{synergy_base_dir}}/{{synergy_name}}"
