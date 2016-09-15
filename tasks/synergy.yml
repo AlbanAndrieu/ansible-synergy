@@ -1,10 +1,10 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
-- name: shell | Check user
+- name: synergy | shell | Check user
   user: name={{ synergy_owner }} state={{ synergy_user_state }}
 
-- name: shell | Check user home directory
+- name: synergy | shell | Check user home directory
   stat: path={{ synergy_owner_home }}
   register: home_present
 
@@ -14,41 +14,47 @@
 - name: synergy | Create temporary directory
   shell: mktemp -d
   register: tempdir
-  sudo: true
+  become: yes
   tags: synergy_setup
 
 - name: synergy | Download synergy
   get_url:
     url="{{synergy_url}}"
     dest="{{ synergy_dir_tmp }}/{{synergy_archive}}"
+  become: yes
   register: synergy_download
   tags: synergy_setup
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
 
-- name: synergy | Create base directory
-  file:
-    dest="{{synergy_base_dir}}/{{synergy_name}}"
-    state=directory
-    owner="{{synergy_owner}}"
-    group="{{synergy_group}}"
-  when: synergy_download.changed
-  tags: synergy_setup
+#- name: synergy | Create base directory
+#  file:
+#    dest="{{synergy_base_dir}}/{{synergy_name}}"
+#    state=directory
+#    owner="{{synergy_owner}}"
+#    group="{{synergy_group}}"
+#  when: synergy_download.changed
+#  tags: synergy_setup
+#  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
 
-- name: Add synergy repository key
+- name: synergy | Add synergy repository key
   apt_key:
     id: "{{ apt_key_sig }}"
     url: "{{ apt_key_url }}"
     state: present
   register: add_repository_key
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
   ignore_errors: true
+  tags: synergy_setup
 
-#- name: Alternative | Add synergy repository key
+#- name: synergy | Alternative | Add synergy repository key
 #  shell: curl -sSL https://symless.com/gpg | sudo apt-key add -
 #  when: add_repository_key|failed
 
 - name: synergy | Add package
   apt: deb={{ synergy_dir_tmp }}/{{ synergy_package_deb }}
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
   when: synergy_download.changed
+  ignore_errors: true
   tags: synergy_setup
 
 #- name: synergy | Change archive synergy ownership
@@ -87,6 +93,38 @@
 #    group="{{synergy_group}}"
 #  tags: synergy_setup
 
+- name: synergy | Configure server
+  template: src=synergy.conf.j2 dest={{ synergy_owner_home}}/{{ synergy_configuration }} mode=0755
+  become: yes
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
+  tags: synergy_setup
+
+#https://help.ubuntu.com/community/SynergyHowto
+#Add client to startup
+#- name: synergy | Autostart Synergy before logging in (LightDM) | Update client
+#  lineinfile:
+#    dest=/etc/lightdm/lightdm.conf
+#    line="greeter-setup-script=/usr/bin/synergyc {{ synergy_server }}"
+#    regexp="^greeter-setup-script"
+#    state=present
+#    insertafter=EOF
+#  become: yes
+#  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
+#  tags: synergy_setup
+
+#Below crash lightdm
+#- name: synergy | Autostart Synergy before logging in (LightDM) | Update server
+#  lineinfile:
+#    dest=/usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+#    line="greeter-setup-script=/usr/bin/synergys -c {{ synergy_server }}"
+#    regexp="^greeter-setup-script"
+#    state=present
+#    insertafter=EOF
+#  become: yes
+#  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
+#  tags: synergy_setup
+
 - name: synergy | Cleanup temporary directory
   file: name={{ tempdir.stdout }} state=absent
+  become: yes
   tags: synergy_setup

@@ -1,0 +1,24 @@
+
+ansigenome_info:
+  galaxy_id: '2206'
+  galaxy_user: 'alban.andrieu'
+  galaxy_name: 'synergy'
+
+  travis: True
+
+  authors:
+    - name:  'Alban Andrieu'
+      url: 'fr.linkedin.com/in/nabla/'
+      email: 'alban.andrieu@free.fr'
+      twitter: 'AlbanAndrieu'
+      github: 'AlbanAndrieu'
+
+  synopsis: |
+    This ``Simple`` role allows you to install [synergy](http://fr.wikipedia.org/wiki/Synergy_(logiciel)) service
+    which can be share your keyboard and mouse across computer.
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..

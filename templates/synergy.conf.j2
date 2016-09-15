@@ -1,0 +1,40 @@
+# {{ ansible_managed }}
+section: screens
+	Desktop:
+		halfDuplexCapsLock = true
+		halfDuplexNumLock = true
+		halfDuplexScrollLock = true
+		switchCorners = none
+		switchCornerSize = 0
+	Main:
+		halfDuplexCapsLock = true
+		halfDuplexNumLock = true
+		halfDuplexScrollLock = true
+		switchCorners = none
+		switchCornerSize = 0
+	Laptop:
+		halfDuplexCapsLock = true
+		halfDuplexNumLock = true
+		halfDuplexScrollLock = true
+		switchCorners = none
+		switchCornerSize = 0
+end
+section: links
+	Desktop:
+		left = Laptop
+		right = Main
+	Main:
+		left = Desktop
+	Laptop:
+		right = Desktop
+end
+section: aliases
+	Main:
+		{{ synergy_server_main }}
+	Desktop:
+		{{ synergy_server_desktop }}
+	Laptop:
+		{{ synergy_server_laptop }}
+end
+section: options
+end
