@@ -19,8 +19,10 @@ synergy_user_state: present
 ## Most likely you dont need to edit
 #todo synergy_service_enabled   : 'yes'
 synergy_major: "1"
-synergy_minor: "8.2"
-synergy_number: "rc1-f4510c7"
+#synergy_minor: "8.2"
+synergy_minor: "4.18"
+#synergy_number: "rc1-f4510c7"
+synergy_number: "r2250"
 synergy_architecture: "Linux-x86_64"
 synergy_version: "{{synergy_major}}.{{synergy_minor}}-{{synergy_number}}-{{synergy_architecture}}"
 synergy_package_deb: "synergy-{{synergy_version}}.deb"
@@ -28,7 +30,8 @@ synergy_name: "synergy-{{synergy_major}}.{{synergy_minor}}"
 #synergy_archive_extracted: "synergy_{{synergy_package_deb}}"
 synergy_archive_extracted: "{{synergy_package_deb}}"
 synergy_archive: "{{synergy_archive_extracted}}"
-synergy_url: "https://symless.com/files/nightly/{{synergy_package_deb}}"
+#synergy_url: "https://symless.com/files/nightly/{{synergy_package_deb}}"
+synergy_url: "http://symless.com/download/free/{{synergy_package_deb}}"
 #synergy_home_dir: "{{synergy_base_dir}}/{{synergy_name}}"
 synergy_server: "127.0.0.1"
 synergy_configuration: '.synergy.conf'
@@ -39,4 +42,4 @@ synergy_server_laptop: "nabla-laptop"
 # Place to get apt repository key
 apt_key_url: https://symless.com/gpg
 # apt repository key signature
-apt_key_sig: TODO
+apt_key_sig: "Free download"
