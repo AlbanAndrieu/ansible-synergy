@@ -126,5 +126,7 @@
 
 - name: synergy | Cleanup temporary directory
   file: name={{ tempdir.stdout }} state=absent
-  become: yes
   tags: synergy_setup
+  changed_when: false    
+  ignore_errors: "{{ ansible_check_mode }}"    
+  become: yes
