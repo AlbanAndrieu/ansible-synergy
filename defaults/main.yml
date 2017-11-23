@@ -12,7 +12,8 @@ home: "{{ lookup('env','HOME') }}"
 synergy_owner_home: "{{ home }}"
 #synergy_home: "{{ synergy_owner_home }}.synergy"
 synergy_base_dir: "/usr/local/synergy"
-synergy_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+#synergy_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+synergy_dir_tmp: "{{ tempdir.stdout }}"
 synergy_user_state: present
 #synergy_pkg_state: present
 
