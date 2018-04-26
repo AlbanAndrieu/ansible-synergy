@@ -54,7 +54,8 @@
   apt: deb={{ synergy_dir_tmp }}/{{ synergy_package_deb }}
   when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
 #  when: synergy_download.changed
-  ignore_errors: true
+  become: yes
+#  ignore_errors: true
   tags: synergy_setup
 
 #- name: synergy | Change archive synergy ownership

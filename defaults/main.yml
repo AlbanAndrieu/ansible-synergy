@@ -19,14 +19,13 @@ synergy_user_state: present
 
 ## Most likely you dont need to edit
 #todo synergy_service_enabled   : 'yes'
-synergy_major: "1"
-#synergy_minor: "8.2"
-synergy_minor: "4.18"
+synergy_major: "2"
+synergy_minor: "0.10.stable"
 #synergy_number: "rc1-f4510c7"
-synergy_number: "r2250"
-synergy_architecture: "Linux-x86_64"
-synergy_version: "{{synergy_major}}.{{synergy_minor}}-{{synergy_number}}-{{synergy_architecture}}"
-synergy_package_deb: "synergy-{{synergy_version}}.deb"
+synergy_number: "b1621+ecfd5e95"
+synergy_architecture: "amd64"
+synergy_version: "{{synergy_major}}.{{synergy_minor}}_{{synergy_number}}_{{synergy_architecture}}"
+synergy_package_deb: "synergy_{{synergy_version}}.deb"
 synergy_name: "synergy-{{synergy_major}}.{{synergy_minor}}"
 #synergy_archive_extracted: "synergy_{{synergy_package_deb}}"
 synergy_archive_extracted: "{{synergy_package_deb}}"
