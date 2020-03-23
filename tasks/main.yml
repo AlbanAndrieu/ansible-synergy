@@ -4,3 +4,7 @@
 - include: synergy.yml
   when: synergy_enabled and not ansible_check_mode
   tags: [synergy]
+
+- include: barrier.yml
+  when: barrier_enabled and not ansible_check_mode
+  tags: [barrier]

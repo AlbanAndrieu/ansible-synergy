@@ -1,4 +1,5 @@
-synergy_enabled: yes                       # Enable module
+synergy_enabled: no                       # Enable module
+barrier_enabled: yes                       # Enable module
 
 #synergy_listen_ip: "127.0.0.1"
 #synergy_port: "8090"
@@ -43,3 +44,6 @@ synergy_server_laptop: "nabla-laptop"
 apt_key_url: https://symless.com/gpg
 # apt repository key signature
 apt_key_sig: "Free download"
+
+barrier_owner_home: "{{ home }}"
+barrier_configuration: 'barrier.conf'

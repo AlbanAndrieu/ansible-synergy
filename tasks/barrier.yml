@@ -1,0 +1,15 @@
+---
+
+- name: barrier | Install barrier
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state={{ util_pkg_state | default('present') }} update_cache=yes"
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
+  with_items:
+    - barrier
+  become: true
+
+- name: barrier | Configure server
+  template: src=barrier.conf.j2 dest={{ barrier_owner_home}}/{{ barrier_configuration }} mode=0755
+  become: yes
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
+  tags: barrier_setup
+  

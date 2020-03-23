@@ -1,0 +1,44 @@
+# {{ ansible_managed }}
+section: screens
+	albandrieu.albandrieu.com:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		preserveFocus = false
+		switchCorners = none 
+		switchCornerSize = 0
+	PARLH8RSK13:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		preserveFocus = false
+		switchCorners = none 
+		switchCornerSize = 0
+end
+
+section: aliases
+	albandrieu.albandrieu.com:
+		albandrieu
+		192.168.1.57
+	PARLH8RSK13:
+		192.168.1.64
+end
+
+section: links
+	albandrieu.albandrieu.com:
+		right = PARLH8RSK13
+	PARLH8RSK13:
+		left = albandrieu.albandrieu.com
+end
+
+section: options
+	relativeMouseMoves = false
+	screenSaverSync = true
+	win32KeepForeground = false
+	clipboardSharing = true
+	switchCorners = none 
+	switchCornerSize = 0
+end
+

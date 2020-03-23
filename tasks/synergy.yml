@@ -19,8 +19,8 @@
 
 - name: synergy | Download synergy
   get_url:
-    url="{{synergy_url}}"
-    dest="{{ synergy_dir_tmp }}/{{synergy_archive}}"
+    url="{{ synergy_url }}"
+    dest="{{ synergy_dir_tmp }}/{{ synergy_archive }}"
   become: yes
   register: synergy_download
   tags: synergy_setup
