@@ -1,0 +1,26 @@
+---
+exclude_paths:
+  - ./requirements.yml
+  - ./.travis.yml
+  - ./playbooks/group_vars/all/vault.yml
+  - ./docker/
+  - ./roles/*
+  - ./k8s/
+#parseable: true
+#quiet: true
+#rulesdir:
+#  - ./rule/directory/
+skip_list:
+  - '602' # See https://github.com/ansible/ansible-lint/issues/457
+  - '204'
+  - '503'
+  - '208' # File permissions not mentioned
+  - filenotfounderror
+#  - skip_this_tag
+#  - and_this_one_too
+#  - skip_this_id
+#tags:
+#  - run_this_tag
+use_default_rules: true
+#verbosity: 1
+offline: true

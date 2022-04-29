@@ -12,4 +12,3 @@
   become: yes
   when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
   tags: barrier_setup
-  

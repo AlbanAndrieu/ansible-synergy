@@ -1,40 +1,52 @@
 # {{ ansible_managed }}
 section: screens
 	Desktop:
-		halfDuplexCapsLock = true
-		halfDuplexNumLock = true
-		halfDuplexScrollLock = true
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
 		switchCorners = none
 		switchCornerSize = 0
-	Main:
-		halfDuplexCapsLock = true
-		halfDuplexNumLock = true
-		halfDuplexScrollLock = true
-		switchCorners = none
-		switchCornerSize = 0
+{% if synergy_server_laptop is defined %}
 	Laptop:
-		halfDuplexCapsLock = true
-		halfDuplexNumLock = true
-		halfDuplexScrollLock = true
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
 		switchCorners = none
 		switchCornerSize = 0
+{% endif %}
 end
-section: links
-	Desktop:
-		left = Laptop
-		right = Main
-	Main:
-		left = Desktop
-	Laptop:
-		right = Desktop
-end
+
+
 section: aliases
+{% if synergy_server_main is defined %}
 	Main:
 		{{ synergy_server_main }}
+{% endif %}
 	Desktop:
 		{{ synergy_server_desktop }}
+{% if synergy_server_laptop is defined %}
 	Laptop:
 		{{ synergy_server_laptop }}
+{% endif %}
 end
+
+section: links
+{% if synergy_server_laptop is defined %}
+	Desktop:
+		right = Laptop
+	Laptop:
+		left = Desktop
+{% endif %}
+end
+
 section: options
+	relativeMouseMoves = false
+	win32KeepForeground = false
+	disableLockToScreen = false
+	clipboardSharing = true
+	clipboardSharingSize = 3072
+	switchCorners = none
+	switchCornerSize = 0
 end

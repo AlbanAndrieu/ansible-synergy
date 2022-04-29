@@ -41,14 +41,14 @@ ansigenome_info:
   synopsis: |
     This ``Simple`` role allows you to install [synergy](http://fr.wikipedia.org/wiki/Synergy_(logiciel)) service
     which can be share your keyboard and mouse across computer.
-    
+
     Official website is [synergy](https://symless.com/synergy/downloads)
 
   usage: |
     Please note that I add to fix chrome doing.
-    
+
     `Issue` : Google Chrome opens in a new window in a new launcher icon
-    
+
     ```
     $ \rm -Rf ~/.local/share/applications/google-chrome-*.desktop
     ```

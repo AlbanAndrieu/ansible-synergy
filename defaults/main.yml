@@ -1,5 +1,5 @@
-synergy_enabled: no                       # Enable module
-barrier_enabled: yes                       # Enable module
+synergy_enabled: yes                     # Enable module
+barrier_enabled: no                      # Enable module
 
 #synergy_listen_ip: "127.0.0.1"
 #synergy_port: "8090"
@@ -20,10 +20,10 @@ synergy_user_state: present
 
 ## Most likely you dont need to edit
 #todo synergy_service_enabled   : 'yes'
-synergy_major: "2"
-synergy_minor: "0.10.stable"
-#synergy_number: "rc1-f4510c7"
-synergy_number: "b1621+ecfd5e95"
+#wget https://api2.prod.symless.com/aws-downloads/synergy/v1-core-standard/1.14.3-stable.218fa800/synergy_1.14.3-stable.218fa800_ubuntu21_amd64.deb
+synergy_major: "1"
+synergy_minor: "14.3.stable"
+synergy_number: "218fa800"
 synergy_architecture: "amd64"
 synergy_version: "{{synergy_major}}.{{synergy_minor}}_{{synergy_number}}_{{synergy_architecture}}"
 synergy_package_deb: "synergy_{{synergy_version}}.deb"
@@ -36,9 +36,9 @@ synergy_url: "http://symless.com/download/free/{{synergy_package_deb}}"
 #synergy_home_dir: "{{synergy_base_dir}}/{{synergy_name}}"
 synergy_server: "127.0.0.1"
 synergy_configuration: '.synergy.conf'
-synergy_server_main: "nabla-main"
-synergy_server_desktop: "nabla-desktop"
-synergy_server_laptop: "nabla-laptop"
+synergy_server_main: ""
+synergy_server_desktop: "albandrieu"
+synergy_server_laptop: "albandrieu-dell-5420"
 
 # Place to get apt repository key
 apt_key_url: https://symless.com/gpg
