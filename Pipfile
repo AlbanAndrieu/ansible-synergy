@@ -21,4 +21,4 @@ ansible-playbook-grapher = "==1.1.0"
 git-pre-commit-hook-utils = ">=0.0.5"
 
 [requires]
-python_version = "3.8"
+python_version = "3.10"
