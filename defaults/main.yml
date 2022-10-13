@@ -37,8 +37,8 @@ synergy_url: "http://symless.com/download/free/{{synergy_package_deb}}"
 synergy_server: "127.0.0.1"
 synergy_configuration: '.synergy.conf'
 synergy_server_main: ""
-synergy_server_desktop: "albandrieu"
-synergy_server_laptop: "albandrieu-dell-5420"
+synergy_server_desktop: "albandrieu" # targeting albandrieu using 10.0.0.254 pfsense
+synergy_server_laptop: "pfsense" # targeting dell albandrieu-dell-5420 using 10.0.0.254 pfsense
 
 # Place to get apt repository key
 apt_key_url: https://symless.com/gpg
