@@ -54,12 +54,12 @@ repos:
       - id: requirements-txt-fixer
       - id: sort-simple-yaml
       - id: file-contents-sorter
-  - repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.6.0
+  - repo: https://github.com/hhatto/autopep8
+    rev: v2.3.2
     hooks:
       - id: autopep8
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.5.0
     hooks:
       - id: flake8
         args: [--max-line-length=120]
@@ -76,8 +76,8 @@ repos:
     rev: v2.2.3
     hooks:
       - id: add-trailing-comma
-  - repo: https://github.com/willthames/ansible-lint.git
-    rev: v6.3.0
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v26.11.0
     hooks:
       - id: ansible-lint
         files: \.(yaml|yml)$
@@ -103,11 +103,11 @@ repos:
               hooks|
           )$
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.34.0
+    rev: v3.22.0
     hooks:
       - id: pyupgrade
-  - repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.6.0
+  - repo: https://github.com/hhatto/autopep8
+    rev: v2.3.2
     hooks:
       - id: autopep8
   - repo: https://github.com/IamTheFij/ansible-pre-commit
